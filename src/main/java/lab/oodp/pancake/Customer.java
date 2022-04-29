@@ -47,14 +47,16 @@ public class Customer {
 
         while (desiredMealSize > 0) {
         	//TODO: remove null, get pancake from stack
-            Pancake p = null;
+            Pancake p = pancakes.pollFirst();
             
             if (p != null) {
 
                 System.out.println(getName() + " ate " + p + "!");
                 desiredMealSize--;
 
-            } //TODO: add else when p is null (no more pancake in the stack), and throws HungryException
+            } else{//TODO: add else when p is null (no more pancake in the stack), and throws HungryException
+            	throw new HungryException(getName()+ " is still hungry:");
+            }
 
         }
 

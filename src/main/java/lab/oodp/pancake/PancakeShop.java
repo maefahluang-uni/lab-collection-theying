@@ -26,20 +26,21 @@ public class PancakeShop {
                 pancakeStack.size() + " pancakes. Hope it's enough!");
 
        
-
+        try {
             Customer customer;
             // Continually de-queues customers till there are none left.
             // HINT: Remember, queues are FIFO.
             while (customerQueue.size()>0) {
             	//TODO: uncomment code below
             	//get customer from the queue in FIFO manner
-// 				customer = 
-//                System.out.println(customer.getName() + " sat at the table. They want to eat "
-//                        + customer.getBellySize() + " pancakes for lunch!");
-//
-//
-//                customer.eat(this.pancakeStack);
-//                System.out.println(customer.getName() + " is happy and full!");
+ 				customer = customerQueue.removeFirst();
+ 						
+                System.out.println(customer.getName() + " sat at the table. They want to eat "
+                        + customer.getBellySize() + " pancakes for lunch!");
+
+
+                customer.eat(this.pancakeStack);
+                System.out.println(customer.getName() + " is happy and full!");
             }
 
             System.out.println("We fed everyone today!");
@@ -49,6 +50,12 @@ public class PancakeShop {
             } else {
                 System.out.println("We fed the remaining " + this.pancakeStack.size() + " pancakes to the birds.");
             }
+        }catch(HungryException e) {
+        	 System.out.println("Oh no! " + e.getMessage());
+             System.out.println("We ran out of pancakes...");
+             System.out.println("There were still " + this.customerQueue.size() + " unfed customers today...");
+        	
+        }
 
         //TODO: surround try/catch above and print this when no more pancakes
 //        System.out.println("Oh no! " + e.getMessage());
@@ -63,7 +70,7 @@ public class PancakeShop {
         int numPancakes = Util.randomValueBetwen(200, 1000);
 
         //TODO: create stack for pancake
-        Deque<Pancake> pancakes = null;
+        Deque<Pancake> pancakes =  new ArrayDeque<>();
 
         for (int i = 1; i <= numPancakes; i++) {
 
@@ -73,6 +80,7 @@ public class PancakeShop {
             //TODO: Add the pancake to the top of the stack.
             // HINT:Stacks are Last-In-First-Out (LIFO)
             // pancakes.
+            pancakes.addFirst(p);
 
         }
 
